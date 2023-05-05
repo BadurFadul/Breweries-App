@@ -1,8 +1,11 @@
 import React from 'react'
+import BreweriesListWithLoading from './Components/BreweriesList'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <BreweriesListWithLoading/>
+    </div>
   )
 }
 

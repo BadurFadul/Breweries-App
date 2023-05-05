@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const fetchLoading = <T,>(ChildComponent: (data: T[]) => JSX.Element, url: string ) => {
+interface ChildProps<T> {
+  data: T[];
+}
+
+const fetchLoading = <T,>(
+  ChildComponent: React.FC<ChildProps<T>>,
+  url: string,
+) => {
   return () => {
     const [Data, setData] = useState<T[]>([]);
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      const fetchData = async() => {
+      const fetchData = async () => {
         try {
-          const result = await axios(url);
+          const result = await axios<T[]>(url);
           setData(result.data);
           setLoading(false);
-        } catch (error:any) {
+        } catch (error: any) {
           setError(error.message);
           setLoading(false);
         }
