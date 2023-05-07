@@ -1,4 +1,5 @@
 import { BreweriesListInterface } from "../types/Breweries"
+import { Link } from 'react-router-dom';
 
 import fetchLoading from "./fetchLoading"
 
@@ -9,10 +10,12 @@ interface BreweriesListProps {
 const BreweriesList = ({ data }: BreweriesListProps) => {
   return (
     <div>
-      {data.map((item) => (
-        <div>
-            {item.name} {}
-        </div>
+      {data.map((brewery) => (
+        <Link key={brewery.id} to={`/companies/${brewery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div>
+            {brewery.name}
+          </div>
+        </Link>
       ))}
     </div>
   )
