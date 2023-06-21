@@ -1,5 +1,12 @@
 import React, { useEffect, useState, memo } from 'react';
 import axios from 'axios';
+import { 
+  Typography,
+  Container,
+  Box
+
+} from '@mui/material';
+
 import { BreweriesListInterface } from '../types/Breweries';
 import BreweriesList from '../Components/BreweriesList';
 import Search from '../Components/Search';
@@ -42,11 +49,13 @@ const Companies: React.FC = memo(() => {
   }
 
   return (
-    <div>
-      <h1>Companies list</h1>
+    <Box
+      sx={{margin: '10px'}}
+    >
+      <Typography variant='h4'>Companies list</Typography>
       <Search setSearchQuery={setSearchQuery} />
       <BreweriesList data={filteredBreweries} />
-    </div>
+    </Box>
   );
 });
 
