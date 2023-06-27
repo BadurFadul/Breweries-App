@@ -18,8 +18,6 @@ import {
   AppBar
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link, Outlet } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import BusinessIcon from '@mui/icons-material/Business';
@@ -33,6 +31,7 @@ const Home = () => {
   const toggleDrawer = () => {
     setState(!state);
   }
+
 
   const Listitems = () => (
     <List sx={{width: '220px', color: 'white' }}>
@@ -54,7 +53,7 @@ const Home = () => {
       </Box>
           <Divider/>
           <ListItem sx={{}}>
-            <ListItemButton component={Link} to="/">
+            <ListItemButton component={Link} to="/" onClick={toggleDrawer}>
               <ListItemIcon>
                 <HomeIcon sx={{color: 'white'}}/>
               </ListItemIcon>
@@ -62,7 +61,7 @@ const Home = () => {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton component={Link} to="/companies">
+            <ListItemButton component={Link} to="/companies" onClick={toggleDrawer}>
               <ListItemIcon>
                 <BusinessIcon sx={{color: 'white'}}/>
               </ListItemIcon>
