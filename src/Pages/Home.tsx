@@ -69,7 +69,7 @@ const Home = () => {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton component={Link} to="/contact">
+            <ListItemButton component={Link} to="/contact" onClick={toggleDrawer}>
               <ListItemIcon>
                 <ContactMailIcon sx={{color: 'white'}}/>
               </ListItemIcon>
@@ -120,80 +120,3 @@ const Home = () => {
 }
 
 export default Home
-
-/*
-  return (
-    <>
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={() =>{setOpen(!open)}}
-            edge="start"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Outlet/>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <Divider />
-        <List>
-          <ListItem>
-            <ListItemButton component={Link} to="/">
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton component={Link} to="/companies">
-              <ListItemIcon>
-                <BusinessIcon />
-              </ListItemIcon>
-              <ListItemText primary="Companies" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton component={Link} to="/contact">
-              <ListItemIcon>
-                <ContactMailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Contact" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Drawer>
-      <Main>
-        <DrawerHeader />
-      </Main>
-    </Box>
-    </>
-    
-  );
-}*/

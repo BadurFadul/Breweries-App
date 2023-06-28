@@ -11,15 +11,18 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import SendIcon from '@mui/icons-material/Send';
+import { yupResolver } from '@hookform/resolvers/yup';
+import ContactSchema, { ContactSchemaData } from '../Validations/ContactSchema';
+
 
 
 const Contact = () => {
-  const {handleSubmit, control} = useForm({
-
+  const {handleSubmit, control, formState: { errors }} = useForm<ContactSchemaData>({
+    resolver: yupResolver(ContactSchema)
   })
 
-  const onSubmit = async () => {
-
+  const onSubmit = async (data: ContactSchemaData) => {
+    console.log(data)
   }
   return (
     <Container
@@ -33,7 +36,7 @@ const Contact = () => {
         >
           Love to hear from you, Get in Touch 👋
         </Typography>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Box
           sx={{display: 'flex', marginTop: '5rem', flexDirection: 'column', gap: '2rem'}}
           >
@@ -52,6 +55,11 @@ const Contact = () => {
                     />
                 )}
               />
+              {errors.name && (
+              <Typography sx={{ color: 'red' }}>
+                {errors.name.message}
+              </Typography>
+            )}
               <Controller
               control={control}
               name="email"
@@ -75,7 +83,7 @@ const Contact = () => {
                 render={({ field: { onChange } }) => (
                   <Select
                     value=""
-                    onChange={onChange}
+                    //onChange={onChange}
                     displayEmpty
                     sx={{ width: '100%' }}
                   >
@@ -120,8 +128,10 @@ const Contact = () => {
             <Box
               sx={{display: 'flex', gap: '2rem', width: '100%'}}
             >
-              <Button variant='contained'
-              sx={{backgroundColor: '#202020', width: '14rem'}}
+              <Button 
+                variant='contained'
+                type="submit" 
+                sx={{backgroundColor: '#202020', width: '14rem'}}
               >
                 Just Send <SendIcon fontSize='small'/>
               </Button>
