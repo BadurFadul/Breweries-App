@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   Typography,
   Container,
   Box,
   TextField,
-  Select,
-  MenuItem,
   TextareaAutosize,
   Button
 } from '@mui/material';
@@ -14,9 +12,22 @@ import SendIcon from '@mui/icons-material/Send';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ContactSchema, { ContactSchemaData } from '../Validations/ContactSchema';
 
+import { GoogleOauthtype } from '../types/GoogleOauthtype';
+
 
 
 const Contact = () => {
+
+  const [user, setUser] = useState<GoogleOauthtype | null>(null);
+
+    useEffect(() => {
+        // load user data from localStorage when component mounts
+        const loadedUser = localStorage.getItem('user');
+        if (loadedUser) {
+            setUser(JSON.parse(loadedUser));
+        }
+    }, []);
+  
   const {handleSubmit, control, formState: { errors }} = useForm<ContactSchemaData>({
     resolver: yupResolver(ContactSchema)
   })
@@ -50,6 +61,7 @@ const Contact = () => {
                   <TextField
                     placeholder='Name'
                     label= "Name"
+                    defaultValue={user?.name || ''}
                     onChange={onChange}
                     sx={{width: '100%'}}
                     />
@@ -68,6 +80,7 @@ const Contact = () => {
                   placeholder="Badur@mail.com"
                   label="Email"
                   type="email"
+                  defaultValue={user?.email || ''}
                   onChange={onChange}
                   sx={{width: '100%'}}
                 />
@@ -81,19 +94,12 @@ const Contact = () => {
                 control={control}
                 name="occupation"
                 render={({ field: { onChange } }) => (
-                  <Select
-                    value=""
-                    //onChange={onChange}
-                    displayEmpty
-                    sx={{ width: '100%' }}
-                  >
-                    <MenuItem value="" disabled>
-                      Select Occupation
-                    </MenuItem>
-                    <MenuItem value="student">Student</MenuItem>
-                    <MenuItem value="developer">Developer</MenuItem>
-                    <MenuItem value="teacher">Teacher</MenuItem>
-                  </Select>
+                  <TextField
+                    placeholder="A student"
+                    label="occupation"
+                    onChange={onChange}
+                    sx={{width: '100%'}}
+                 />
                 )}
               />
               <Controller
@@ -138,7 +144,6 @@ const Contact = () => {
             </Box>
           </Box>
         </form>
-        
       </Box>
       
     </Container>

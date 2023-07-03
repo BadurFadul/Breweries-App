@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
@@ -15,22 +15,50 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
-  AppBar
+  Menu,
+  AppBar,
+  MenuItem
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, Outlet } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import BusinessIcon from '@mui/icons-material/Business';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleOauth from '../Components/GoogleOauth';
+import { GoogleOauthtype } from '../types/GoogleOauthtype';
 
 
 
 const Home = () => {
   const [state, setState] = useState(false)
+  const [user, setUser] = useState<GoogleOauthtype | null>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleDrawer = () => {
     setState(!state);
   }
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handlelogout = () => {
+    localStorage.removeItem('user');
+  }
+
+  useEffect(() => {
+    // load user data from localStorage when component mounts
+    const loadedUser = localStorage.getItem('user');
+    if (loadedUser) {
+        setUser(JSON.parse(loadedUser));
+    }
+}, []);
 
 
   const Listitems = () => (
@@ -96,7 +124,47 @@ const Home = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Breweries-App
           </Typography>
-          <Button color="inherit">Login</Button>
+          <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                {user && user.picture ? (
+                  <img src={user.picture} alt="profile pic" style={{ height: '40px', width: '40px', borderRadius: '50%' }} />
+                    ) : (
+                  <AccountCircle fontSize='large'/>
+                )}
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem>
+                  <GoogleOAuthProvider 
+                    clientId="639166182342-g9h42d4lht0hmc2pu3eplgr3m4rsk61a.apps.googleusercontent.com"
+                  >
+                    <GoogleOauth/>
+                  </GoogleOAuthProvider>
+                </MenuItem>
+                <MenuItem>
+                  <Button variant='contained' onClick={handlelogout}>Log out</Button>
+                </MenuItem>
+                
+              </Menu>
         </Toolbar>
       </AppBar>
       <Outlet/>

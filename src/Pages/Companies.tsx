@@ -4,7 +4,8 @@ import {
   Typography,
   Container,
   Box,
-  Button
+  Button,
+  Grid
 
 } from '@mui/material';
 
@@ -52,20 +53,42 @@ const Companies: React.FC = memo(() => {
   }, [searchQuery, breweries]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        style={{ minHeight: '100vh' }}
+      >
+        <Typography variant="h5">Loading...</Typography>
+      </Grid>
+    );
   }
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        style={{ minHeight: '100vh' }}
+      >
+        <Typography variant="h5">{error}</Typography>
+      </Grid>
+    );
   }
 
   return (
     <Box
       sx={{margin: '10px'}}
     >
-      <Typography variant='h4'>Companies list</Typography>
-      <Search setSearchQuery={setSearchQuery} />
-      <BreweriesList data={filteredBreweries} />
-      <Button disabled={isDisable} onClick={loadMore}>load more</Button>
+      <Box
+        sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
+      >
+        <Typography variant='h4'>Companies list</Typography>
+        <Search setSearchQuery={setSearchQuery} />
+      </Box>
+      
+      <BreweriesList data={filteredBreweries} isDisable={isDisable} loadMore={loadMore} />
     </Box>
   );
 });
