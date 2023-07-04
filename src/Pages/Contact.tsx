@@ -37,10 +37,10 @@ const Contact = () => {
   }
   return (
     <Container
-      sx={{display:'flex', alignContent: 'center', justifyContent: 'center', marginTop: '2rem'}}
+      sx={{display:'flex', justifyContent: 'center', marginTop: '2rem', height: '75vh'}}
     >
       <Box
-        sx={{width: '80%', display: 'flex', flexDirection: 'column'}}
+        sx={{width: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}
       >
         <Typography variant='h3'
           sx={{height:'5rem', width:'35rem'}}
@@ -52,7 +52,7 @@ const Contact = () => {
           sx={{display: 'flex', marginTop: '5rem', flexDirection: 'column', gap: '2rem'}}
           >
             <Box
-              sx={{display: 'flex', gap: '2rem', width: '100%'}}
+              sx={{display: 'flex', gap: '2rem'}}
             >
               <Controller
                 control={control}
@@ -145,7 +145,6 @@ const Contact = () => {
           </Box>
         </form>
       </Box>
-      
     </Container>
   )
 }

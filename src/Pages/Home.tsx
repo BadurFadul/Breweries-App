@@ -28,6 +28,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleOauth from '../Components/GoogleOauth';
 import { GoogleOauthtype } from '../types/GoogleOauthtype';
+import Footer from '../Components/Footer';
 
 
 
@@ -133,7 +134,7 @@ const Home = () => {
                 color="inherit"
               >
                 {user && user.picture ? (
-                  <img src={user.picture} alt="profile pic" style={{ height: '40px', width: '40px', borderRadius: '50%' }} />
+                  <img src={user.picture} alt="profile pic" style={{ height: '30px', width: '30px', borderRadius: '30%' }} />
                     ) : (
                   <AccountCircle fontSize='large'/>
                 )}
@@ -148,7 +149,7 @@ const Home = () => {
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'left',
+                  horizontal: 'right',
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
@@ -163,11 +164,11 @@ const Home = () => {
                 <MenuItem>
                   <Button variant='contained' onClick={handlelogout}>Log out</Button>
                 </MenuItem>
-                
               </Menu>
         </Toolbar>
       </AppBar>
       <Outlet/>
+      <Footer/>
       <Drawer
         anchor='left'
         open={state}
