@@ -28,17 +28,17 @@ const Footer = () => {
         <Box display={'flex'} flexDirection={'column'} gap={'1rem'}>
             <Box display={'flex'} >
                 <Box>
-                    <IconButton aria-label="github" component="a" href="https://github.com/username">
+                    <IconButton aria-label="github" component="a" href="https://github.com/BadurFadul" target='_blank'>
                         <GitHubIcon fontSize='large'/>
                     </IconButton>
                 </Box>
                 <Box>
-                    <IconButton aria-label="email" component="a" href="mailto:info@app.com">
+                    <IconButton aria-label="email" component="a" href="mailto:badoryousif.by@gmail.com" target='_blank'>
                         <EmailIcon fontSize='large' />
                     </IconButton>
                 </Box>
                 <Box>
-                    <IconButton aria-label="linkedin" component="a" href="https://linkedin.com/in/username">
+                    <IconButton aria-label="linkedin" component="a" href="https://www.linkedin.com/in/badreldin-fadul-821bb512b/" target='_blank'>
                         <LinkedInIcon  fontSize='large'/>
                     </IconButton>
                 </Box>

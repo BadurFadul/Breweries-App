@@ -5,13 +5,19 @@ import NotFound from './Pages/NotFound'
 import Companies from './Pages/Companies'
 import SingleCompany from './Pages/SingleCompany'
 import Contact from './Pages/Contact'
+import Intro from './Pages/Intro'
+import Default from './Pages/Default'
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element: <Home/>,
+    element: <Default/>,
     errorElement: <NotFound />,
     children: [
+      {
+        path: '/',
+        element: <Intro/>
+      },
       {
         path:"/companies",
         element: <Companies/>

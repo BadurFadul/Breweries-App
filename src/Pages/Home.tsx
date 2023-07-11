@@ -167,8 +167,8 @@ const Home = () => {
               </Menu>
         </Toolbar>
       </AppBar>
-      <Outlet/>
-      <Footer/>
+      {/* <Outlet/>
+      <Footer/> */}
       <Drawer
         anchor='left'
         open={state}
