@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { BreweriesListInterface } from "../types/Breweries"
 import React, { useEffect, useState, memo } from 'react'
 
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
 import {
   Card,
   CardContent,
@@ -16,6 +18,14 @@ const SingleCompany: React.FC = memo(() => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState("")
   const [company, setcompany] = useState<BreweriesListInterface | null>()
+
+  const mapStyles = {        
+    height: "50vh",
+    width: "100%"};
+   
+  const defaultCenter = {
+    lat: 41.3851, lng: 2.1734
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,6 +100,16 @@ const SingleCompany: React.FC = memo(() => {
             <strong>Website:</strong>{' '}
               {company?.website_url}
           </Typography>
+          <iframe
+                className='mapsFrame'
+                title='mapsEmbed'
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBPg4nSA2QW6hVAevXXhmwXfE8BIi_BQOM
+                    &q=${company?.name}+${company?.state}`}>
+
+            </iframe>
         </CardContent>
       </Card>
     </Grid>
