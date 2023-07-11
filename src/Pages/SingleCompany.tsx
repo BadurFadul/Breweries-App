@@ -100,16 +100,23 @@ const SingleCompany: React.FC = memo(() => {
             <strong>Website:</strong>{' '}
               {company?.website_url}
           </Typography>
-          <iframe
-                className='mapsFrame'
-                title='mapsEmbed'
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBPg4nSA2QW6hVAevXXhmwXfE8BIi_BQOM
-                    &q=${company?.name}+${company?.state}`}>
-
-            </iframe>
+          <Box
+              component="iframe"
+              title='mapsEmbed'
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBPg4nSA2QW6hVAevXXhmwXfE8BIi_BQOM
+              &q=${company?.name}+${company?.state}`}
+              sx={{
+                width: '100%',
+                height: '300px',
+                border: 'none',
+                borderRadius: '4px',
+                mt: 2,
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)'
+                }}
+            />
         </CardContent>
       </Card>
     </Grid>
