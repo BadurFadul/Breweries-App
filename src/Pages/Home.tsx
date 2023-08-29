@@ -28,7 +28,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleOauth from '../Components/GoogleOauth';
 import { GoogleOauthtype } from '../types/GoogleOauthtype';
-import Footer from '../Components/Footer';
+//import Footer from '../Components/Footer';
 
 
 
