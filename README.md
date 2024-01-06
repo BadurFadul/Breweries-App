@@ -9,4 +9,4 @@ Fetch, display, and search for brewery companies from the given API endpoint, us
 2. Set up frontend: Navigate to `frontend`, install dependencies, and start the development server.
 3. Access the application via provided URL.
 
-Access the deployed application at [Here](https://breweriess-app.netlify.app//).
+Access the deployed application at [Here](https://breweriess-app.netlify.app/).
