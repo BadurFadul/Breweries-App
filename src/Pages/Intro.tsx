@@ -11,6 +11,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import BalanceIcon from '@mui/icons-material/Balance';
 import ClosedCaptionOffIcon from '@mui/icons-material/ClosedCaptionOff';
 
+import { Link } from 'react-router-dom';
+
 import ProductHeroLayout from '../Components/ProductHeroLayout';
 
 const backgroundImage = 'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=872&q=80';
@@ -53,8 +55,8 @@ const Intro = () => {
         <Button
             variant="contained"
             size="large"
-            component="a"
-            href="/companies"
+            component={Link}
+            to={"/companies"}
             sx={{ minWidth: 200 }}
         >
             company list
